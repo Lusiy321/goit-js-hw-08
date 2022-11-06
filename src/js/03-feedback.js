@@ -7,8 +7,8 @@ const feedback = 'feedback-form-state';
 form.addEventListener('input', throttle(feedbackFoo, 500));
 form.addEventListener('submit', submit);
 
-updateData();
 const data = {};
+updateData();
 
 function updateData() {
   if (localStorage.getItem(feedback)) {
@@ -26,7 +26,9 @@ function feedbackFoo() {
 
 function submit(evt) {
   evt.preventDefault();
-  console.log(data);
-  evt.currentTarget.reset();
-  localStorage.clear();
+  if (form.elements.email.value && form.elements.message.value) {
+    console.log(data);
+    evt.currentTarget.reset();
+    localStorage.clear();
+  }
 }
